@@ -1,5 +1,9 @@
+document.ready
+
 //========================================GLOBAL VARIABLES=====================
 var score = 0
+
+ //objects with keys as answers
 var questions = [{
     question:  "how much wood could a woodchuck chuck?",
     imgSrc:  "",
@@ -16,19 +20,47 @@ var questions = [{
     D:  "2 times",
     E:  "the earth is flat"
     }
-]; //objects with keys as answers
+];
 
 
-//============================FUNCTIONS===================
-//render questions function
+timeLeft = 5
+
+//============================FUNCTIONS=========================================
+
+//---render questions function----
 function renderQuestions() {
     var q = questions [];
 
+//-------TIMER----------
+function countDown () {
+    var timer = setInterval(function(){
+            timeLeft -- 
+            $('#timer').text(timeLeft)
+        if (timeLeft == -1 ) {
+            $('#timer').html("gotta be faster than that!");
+            clearInterval(timer)
+        }
+        },  1000)
+    }
+
+
+function gameStart () {
+    $('#directions, #start').css('display', 'none')
+
 }
-//loop through questions
+
+//======================ON CLICK START GAME=====================================
+
+$('button').click(function(){
+    gameStart();
+    countDown();
+});
+
+
+
+// loop through questions
 for (var i =0; i < questions.length; i++) {
     var response = //on click selection object--- key
     if (response === questions[i].answer){
         score++
-    }
-}
+    }}
