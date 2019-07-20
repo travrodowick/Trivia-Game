@@ -3,6 +3,8 @@ $(document).ready(function () {
     //========================================GLOBAL VARIABLES=====================
     var score = 0;
     var timeLeft = 600;
+    var newQuestion = '';
+    var choices
 
 
 
@@ -17,54 +19,63 @@ $(document).ready(function () {
         question: "how any times have crewed space shuttles landed on the moon?",
         imgSrc: "",
         answers: ["never. unless you count in Hollywood", "1 time", "2 times", "6 times", "the earth is flat"],
-        correct: '6 times'
+        correct: 2
     }, {
         question: "whats the answer to question 3?",
         imgSrc: "",
         answers: ["A...first choice", "B", "C is the answer most of the time", "unless D is the answer and C's just there to trick you"],
-        correct: "C is the answer most of the time"
+        correct: 2
     },
     {
         question: "whats the name of the of the first person to set foot on the moon?",
         imgSrc: "",
         answers: ["Britney Bitch", "Buzz Aldrin", "Neil Armstrong", "Brad Pitt"],
-        correct: "Neil Armstrong"
+        correct: 2
     },
     {
         question: "who was president during the first moon landing?",
         imgSrc: "",
         answers: ["John F. Kennedy", "Lyndon B. Johnson", "Britney Bitch", "William B. Pitt"],
-        correct: "Neil Armstrong"
+        correct: 0
     },
     {
-        question: "what Apollo mission made the ?",
+        question: "what Apollo mission made the piloted by Aldrin and Armstrong landed on the moon?",
         imgSrc: "",
-        answers: ["John F. Kennedy", "Lyndon B. Johnson", "Britney Bitch", "William B. Pitt"],
-        correct: "Neil Armstrong"
+        answers: ["Apollo 11", "Apollo 13", "Falcon 9", "Apollo 15"],
+        correct: 0
     },
     {
         question: "what year was the first moon landing?",
         imgSrc: "",
         answers: ["1975", "1966", "1969", "1973"],
-        correct: "Neil Armstrong"
+        correct: 2
     }
     ];
 
 
 
 
-    //============================FUNCTIONS=========================================
-    function renderQuestions(answers) {
+    //============================FUNCTIONS=========================================\
+
+    function renderQuestions(question) {
         for (var i = 0; i < questions.length; i++) {
-            $('#questions').append(questions[i].question + '<br>')
-            console.log(questions[i])
-            for (var j = 0; j < questions[i].answers.length; j++) {
-                var choices = $("<input type='radio'/>").text('is there anyone out there?').html('<br>');
-                $('#answerID').append(choices);
-                console.log(choices)
+            newQuestion = '<p>' + questions[i] + '</p>';
+            // $('#questions').html(newQuestion)
+            console.log(questions[i]);
+            function renderAnswers(answer) {
+                for (var j = 0; j < questions[i].answers.length; j++) {
+                    var choices = $('<input type="radio" name= "answer" value= "' + questions[i].answers[j] + '">"');
+                    // $("<input type='radio'/>").text(questions[i].answers[j])('<br>');
+                    // $('#answerID').append(choices);
+                    choices += answer + '<br>'
+                    console.log(choices);
+                };
             };
         };
+        $('buttons').html(choices)
     };
+
+
 
     // function renderQuestions() {
     //     for (var i = 0; i < questions.length; i++) {
