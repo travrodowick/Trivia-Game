@@ -1,8 +1,10 @@
 $(document).ready(function () {
 
     //========================================GLOBAL VARIABLES=====================
-    var score = 0
-    timeLeft = 5
+    var score = 0;
+    var timeLeft = 600;
+
+
 
 
     //objects with keys as answers
@@ -21,61 +23,109 @@ $(document).ready(function () {
         imgSrc: "",
         answers: ["A...first choice", "B", "C is the answer most of the time", "unless D is the answer and C's just there to trick you"],
         correct: "C is the answer most of the time"
-    }];
+    },
+    {
+        question: "whats the name of the of the first person to set foot on the moon?",
+        imgSrc: "",
+        answers: ["Britney Bitch", "Buzz Aldrin", "Neil Armstrong", "Brad Pitt"],
+        correct: "Neil Armstrong"
+    },
+    {
+        question: "who was president during the first moon landing?",
+        imgSrc: "",
+        answers: ["John F. Kennedy", "Lyndon B. Johnson", "Britney Bitch", "William B. Pitt"],
+        correct: "Neil Armstrong"
+    },
+    {
+        question: "what Apollo mission made the ?",
+        imgSrc: "",
+        answers: ["John F. Kennedy", "Lyndon B. Johnson", "Britney Bitch", "William B. Pitt"],
+        correct: "Neil Armstrong"
+    },
+    {
+        question: "what year was the first moon landing?",
+        imgSrc: "",
+        answers: ["1975", "1966", "1969", "1973"],
+        correct: "Neil Armstrong"
+    }
+    ];
 
 
 
 
     //============================FUNCTIONS=========================================
-
-
-
-
-
-    function renderQuestions() {
+    function renderQuestions(answers) {
         for (var i = 0; i < questions.length; i++) {
-            $('#questions').text("heres questions:  ", questions[i].question)
+            $('#questions').append(questions[i].question + '<br>')
+            console.log(questions[i])
             for (var j = 0; j < questions[i].answers.length; j++) {
+                var choices = $("<input type='radio'/>").text('is there anyone out there?').html('<br>');
+                $('#answerID').append(choices);
+                console.log(choices)
+            };
+        };
+    };
 
-                $('#answers').text(questions[i].answers[j])
-            }
-        }
-    }
+    // function renderQuestions() {
+    //     for (var i = 0; i < questions.length; i++) {
+    //         var choices = $("<input type='radio'/>").addClass('.answerClass').text('*' + questions.answers[i]);
+    //         console.log(choices)
+    //     }
+    // }
+
+    $('.answerClass').on('click', function () {
+        var userGuess = questions.answers
+        if (userGuess === questions[i].correct) {
+            alert('correct')
+
+        };
+    });
+
+
+    // //render question 1 
+    // function renderQuestion1() {
+    //     $('#questions').text('Question:  ' + questions.question)
+    //     for (var j = 0; j < questions[i].answers.length; j++) {
+    //         var choices = $("<p id='answer1'>").text('*' + questions[i].answers[j]);
+    //         $('#answerID').append(choices);
+    //     };
+    // }
+
+
+
+    // //render questions to the page---
+
+    //     console.log('renderQuestions run')
+    // };
     //-------TIMER----------
     function countDown() {
         var timer = setInterval(function () {
-            timeLeft--
-            $('#timer').text(timeLeft)
+            timeLeft--;
+            $('#timer').text(timeLeft);
             if (timeLeft == -1) {
                 $('#timer').html("gotta be faster than that!");
-                clearInterval(timer)
-            }
-        }, 1000)
-    }
+                clearInterval(timer);
+            };
+        }, 1000);
+    };
 
 
     function gameStart() {
         $('#directions, #start').css('display', 'none')
-
     }
 
 
 
 
-    //=======================TESTING & DEBUGGING====================
-
-    renderQuestions()
 
 
 
-    //======================ON CLICK START GAME=====================================
-
-    $('button').click(function () {
+    //========ON CLICK START GAME======
+    $('button').on('click', function () {
         gameStart();
         countDown();
         renderQuestions();
     });
-
 
 
     // loop through questions
