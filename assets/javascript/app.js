@@ -14,7 +14,7 @@ $(document).ready(function () {
         question: "how much wood could a woodchuck chuck?",
         imgSrc: "",
         answers: ["32 trees worth", "about as much wood a woodchuck could", "woodchucks are extinct", "not as much as a lumber jack"],
-        correct: "about as much wood a woodchuck could"
+        correct: 1
     }, {
         question: "how any times have crewed space shuttles landed on the moon?",
         imgSrc: "",
@@ -56,27 +56,25 @@ $(document).ready(function () {
 
 
     //============================FUNCTIONS=========================================\
-
-    function renderQuestions(question) {
+    function renderQuestions() {
         for (var i = 0; i < questions.length; i++) {
-            newQuestion = '<p>' + questions[i] + '</p>';
-            // $('#questions').html(newQuestion)
-            console.log(questions[i]);
-            function renderAnswers(answer) {
-                for (var j = 0; j < questions[i].answers.length; j++) {
-                    var choices = $('<input type="radio" name= "answer" value= "' + questions[i].answers[j] + '">"');
-                    // $("<input type='radio'/>").text(questions[i].answers[j])('<br>');
-                    // $('#answerID').append(choices);
-                    choices += answer + '<br>'
-                    console.log(choices);
-                };
+            $('#quiz').append('<br>' + questions[i].question + '<br>')
+            console.log(questions[i])
+            for (var j = 0; j < questions[i].answers.length; j++) {
+                console.log(questions[i].answers[j])
+                var choices = $(`<input type='radio' name= 'question-${i}' value='${questions[i].answers[j]}'><label for= '${questions[i].answers[j]}'>${questions[i].answers[j]}</label>`)
+
+                // var choices = $("<input type='radio' name= 'question-'" + i + "' value= '" + questions[i].answers[j] + "' />").text(questions[i].answers[j])
+                // choices += 'value= "' + j + '">'
+                // choices += '<br>';
+
+                $('#quiz').append(choices);
+                // $('#quiz').append(questions[i].answers[j])
+                // console.log(choices)
             };
+
         };
-        $('buttons').html(choices)
     };
-
-
-
     // function renderQuestions() {
     //     for (var i = 0; i < questions.length; i++) {
     //         var choices = $("<input type='radio'/>").addClass('.answerClass').text('*' + questions.answers[i]);
