@@ -110,20 +110,20 @@ $(document).ready(function () {
 
     //==========on click submit questions and check against answers===============
     // loop through questions
-    $('#submit').on('click', function () {
-        var radios = form.elements["question-0"]
-        for (var i = 0; i < radios.length; i++) {
-            if (radios[i].checked) { // radio checked?
-                var val = radios[i].value
-            };
-            return val
-            // for (var i = 0; i < questions.length; i++) {
-            //     // for (var j = 0; j < questions[i].answers.length; j++) {
-            //     var response = $("input [name='question-" + i + "']:checked").val();
-            //     console.log(response)
-        };
-        console.log(val)
-    });
+    // $('#submit').on('click', function () {
+    //     var radios = form.elements["question-0"]
+    //     for (var i = 0; i < radios.length; i++) {
+    //         if (radios[i].checked) { // radio checked?
+    //             var val = radios[i].value
+    //         };
+    //         return val
+    //         // for (var i = 0; i < questions.length; i++) {
+    //         //     // for (var j = 0; j < questions[i].answers.length; j++) {
+    //         //     var response = $("input [name='question-" + i + "']:checked").val();
+    //         //     console.log(response)
+    //     };
+    //     console.log(val)
+    // });
 
     // var response = 
     // } if (response === questions[i].answer){
