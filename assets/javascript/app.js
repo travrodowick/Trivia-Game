@@ -56,6 +56,7 @@ $(document).ready(function () {
 
     //============================FUNCTIONS=========================================\
     function renderQuestions() {
+        $('#quiz').empty()
         for (var i = 0; i < questions.length; i++) {
             $('#quiz').append('<br>' + questions[i].question + '<br>');
             for (var j = 0; j < questions[i].answers.length; j++) {
@@ -74,8 +75,7 @@ $(document).ready(function () {
     //-------TIMER----------
     //initiate contdown and display message on timeout and remove quiz
     function countDown() {
-        clearInterval(timer)
-        var timer = setInterval(function () {
+        timer = setInterval(function () {
             timeLeft--;
             $('#timer').text(timeLeft);
             if (timeLeft == -1) {
@@ -105,24 +105,27 @@ $(document).ready(function () {
         renderQuestions();
         score = 0;
         timeLeft = 600;
-        clearInterval()
+        $('#reset').empty()
+        $('#timer').css('display', '');
     };
 
     //==========on click submit questions and check against answers===============
     $('#submit').on('click', function () {
         //hide submit button
+        $('#timer').css('display', 'none');
         $('#submit').css('display', 'none');
         //reveal reset button
         var resetButton = $(`<button type= "button" id="reset-bttn">RESET</button>`);
         $('#reset').append(resetButton);
         //stop timer
-        clearTimeout(timeLeft);
-
+        timeLeft = 0;
+        clearInterval(timer)
         var score = 0;
+        //check answers vs questions------------
         for (var i = 0; i < questions.length; i++) {
             var radios = document.getElementsByName('question-' + i);
             for (var checked of radios) {
-                if (checked.checked === true) {
+                if (checked.checked) {
                     if (checked.value === questions[i].correct)
                         score++;
                 }
