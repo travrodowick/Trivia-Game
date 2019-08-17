@@ -36,7 +36,7 @@ $(document).ready(function () {
         {
             question: "#5:  who was president during the first moon landing?",
             imgSrc: "",
-            answers: ["John F. Kennedy", "Lyndon B. Johnson", "Britney Bitch", "William B. Pitt"],
+            answers: ["John F. Kennedy", "Lyndon B. Johnson", "Richard Nixon", "William B. Pitt"],
             correct: "John F. Kennedy"
         },
         {
